@@ -1,0 +1,84 @@
+  /* AppBar styles */
+  .AppBar {
+    background-color: #3f51b5;
+    transition: margin-left 300ms ease-in-out;
+  }
+
+  .Toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .IconButton {
+    margin-right: 16px;
+  }
+  
+  .sidebar {
+    padding: 20px;
+    height: 100%;
+    color: white;
+    background: linear-gradient(110deg, #3711d2, #e635e3);
+  }
+  
+  .DrawerAvatar {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+  }
+  
+  .DrawerUserName {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  
+  /* Grid container styles */
+  .GridContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Avatar styles */
+  .Avatar {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+  }
+  
+  /* Typography styles */
+  .DrawerTypography {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 600px) {
+    .DrawerBox {
+      padding: 10px;
+    }
+  
+    .DrawerAvatar {
+      width: 50px;
+      height: 50px;
+    }
+  
+    .DrawerUserName {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (min-width: 600px) and (max-width: 960px) {
+    .DrawerBox {
+      padding: 15px;
+    }
+  
+    .DrawerAvatar {
+      width: 55px;
+      height: 55px;
+    }
+  
+    .DrawerUserName {
+      font-size: 1.125rem;
+    }
+  }
+  
