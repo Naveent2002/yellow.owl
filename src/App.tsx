@@ -19,6 +19,7 @@ interface Student {
   profilePicture: string;
 }
 
+
 const ResponsiveContainer = styled(Container)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
     paddingLeft: theme.spacing(2),
