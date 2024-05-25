@@ -8,6 +8,7 @@ import { styled } from '@mui/system';
 import { Edit } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Navbar from './Navbar';
+import '../src/tab.css';
 
 interface Student {
   id: number;
@@ -18,7 +19,6 @@ interface Student {
   phoneNumber: string;
   profilePicture: string;
 }
-
 
 const ResponsiveContainer = styled(Container)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
@@ -54,6 +54,12 @@ const App: React.FC = () => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
 
   useEffect(() => {
   }, []);
@@ -131,11 +137,8 @@ const App: React.FC = () => {
   );
 
   return (
-    <ResponsiveContainer>
-      <Navbar userName={''} profilePictureUrl={''} />
-      <Box display="flex" alignItems="center" justifyContent="space-between" mt={10}>
-         <Typography variant="h4" gutterBottom>Students</Typography> 
-      </Box>
+    <ResponsiveContainer style={{ marginTop: '-40px', paddingLeft: isDrawerOpen ? 250 : 0, transition: 'padding-left 0.3s' }}>
+      <Navbar userName={''} profilePictureUrl={''} onDrawerToggle={handleDrawerToggle} />
       <Box display="flex" alignItems="center" justifyContent="end">
         <TextField
           label="Search..."
@@ -148,7 +151,7 @@ const App: React.FC = () => {
         />
         <Button
           variant="contained"
-          style={{background:'#11d268'}}
+          style={{ background: '#11d268' }}
           size="large"
           onClick={handleOpenFormDialog}
         >
@@ -161,7 +164,7 @@ const App: React.FC = () => {
             <TableRow>
               <TableCell>NAME</TableCell>
               <TableCell>EMAIL</TableCell>
-              {!isMobile &&  (
+              {!isMobile && (
                 <>
                   <TableCell>PHONE</TableCell>
                   <TableCell>ENROLL NUMBER</TableCell>
@@ -200,7 +203,6 @@ const App: React.FC = () => {
           </TableBody>
         </Table>
       </ResponsiveTableContainer>
-
       <Dialog
         open={openFormDialog}
         onClose={handleCloseFormDialog}
@@ -277,30 +279,27 @@ const App: React.FC = () => {
           </Grid>
         </DialogContent>
         <DialogActions>
-  <Grid container direction='column' justifyContent="center" alignItems='center' gap={2}>
-    <Grid item>
-    <Button
-  variant="contained"
-  style={{ background: '#11d268', width: '220px' }}
-  onClick={() => (editStudentId ? updateStudent(editStudentId) : addStudent())}
->
-  {editStudentId ? 'Update' : 'Submit'}
-</Button>
-    </Grid>
-    <Grid item>
-      <Button
-        variant="contained"
-        style={{ background: '#e85f10', width:'220px'}}
-        onClick={handleCloseFormDialog}
-      >
-        Cancel
-      </Button>
-    </Grid>
-  </Grid>
-</DialogActions>
-
-
-
+          <Grid container direction='column' justifyContent="center" alignItems='center' gap={2}>
+            <Grid item>
+              <Button
+                variant="contained"
+                style={{ background: '#11d268', width: '220px' }}
+                onClick={() => (editStudentId ? updateStudent(editStudentId) : addStudent())}
+              >
+                {editStudentId ? 'Update' : 'Submit'}
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                style={{ background: '#e85f10', width: '220px' }}
+                onClick={handleCloseFormDialog}
+              >
+                Cancel
+              </Button>
+            </Grid>
+          </Grid>
+        </DialogActions>
       </Dialog>
 
       <Dialog
@@ -312,10 +311,10 @@ const App: React.FC = () => {
         </DialogContent>
         <DialogActions>
           <Box display="flex" justifyContent="center" width="100%" gap={1}>
-          <Button onClick={confirmDelete} style={{ background: '#11d268',color:'white',width:'150px'}} autoFocus>
+            <Button onClick={confirmDelete} style={{ background: '#11d268', color: 'white', width: '150px' }} autoFocus>
               Yes
             </Button>
-            <Button onClick={cancelDelete}style={{ background: '#e85f10',color:'white',width:'150px'}} >
+            <Button onClick={cancelDelete} style={{ background: '#e85f10', color: 'white', width: '150px' }}>
               No
             </Button>
           </Box>

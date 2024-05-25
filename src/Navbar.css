@@ -18,7 +18,7 @@
     padding: 20px;
     height: 100%;
     color: white;
-    background: linear-gradient(110deg, #3711d2, #e635e3);
+    background: linear-gradient(100deg, #3711d2 ,#3711d2, #e635e3 );
   }
   
   .DrawerAvatar {
